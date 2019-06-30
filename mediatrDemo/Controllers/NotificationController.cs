@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace mediatrDemo.Controllers
 {
-    [Route("api/[controller]")]
+   
     [ApiController]
     public class NotificationController : ControllerBase
     {
@@ -18,6 +18,7 @@ namespace mediatrDemo.Controllers
         }
 
         [HttpGet]
+        [Route("api/[controller]/Notify")]
         public ActionResult<string> NotifyMessage()
         {
             _mediatorService.Notify("This is a test notification message");
@@ -25,6 +26,7 @@ namespace mediatrDemo.Controllers
         }
 
         [HttpGet]
+        [Route("api/[controller]/Send")]
         public async Task<string> SendMessage(String _data)
         {
             String data = await _mediatorService.Send(_data);
