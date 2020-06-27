@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
+﻿using System.Reflection;
+using HealthChecks.UI.Configuration;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace mediatrDemo
 {
@@ -26,9 +21,11 @@ namespace mediatrDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddTransient<IMediatorService, MediatorService>();
+            services.AddHealthChecks();
+            services.AddHealthChecks().AddSqlServer(Configuration["DBConnections:SqlServerConnectionString"]);
 
         }
 
@@ -39,8 +36,18 @@ namespace mediatrDemo
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseHealthChecks("/hc");
 
-            app.UseMvc();
+            app.UseHealthChecksUI(delegate (Options options)
+            {
+                options.UIPath = "/hc-ui";
+                
+            });
+
+            app.UseStaticFiles();
+
+            app.UseRouting();
+
         }
     }
 }
