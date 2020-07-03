@@ -23,30 +23,23 @@ namespace mediatrDemo
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
             services.AddMediatR(Assembly.GetExecutingAssembly());
-            services.AddTransient<IMediatorService, MediatorService>();
-            services.AddHealthChecks();
-            services.AddHealthChecks().AddSqlServer(Configuration["DBConnections:SqlServerConnectionString"]);
-
+            services.AddTransient<IDataService, DataService>();
+            services.ConfigureCors();
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+#pragma warning disable CS0618 // Type or member is obsolete
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+#pragma warning restore CS0618 // Type or member is obsolete
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseHealthChecks("/hc");
-
-            app.UseHealthChecksUI(delegate (Options options)
-            {
-                options.UIPath = "/hc-ui";
-                
-            });
-
-            app.UseStaticFiles();
 
             app.UseRouting();
+           
 
         }
     }

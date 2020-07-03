@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,27 +8,26 @@ namespace mediatrDemo.Controllers
     [ApiController]
     public class NotificationController : ControllerBase
     {
-        private readonly IMediatorService _mediatorService;
+        private readonly IDataService _dataService;
 
-        public NotificationController(IMediatorService mediatorService)
+        public NotificationController(IDataService dataService)
         {
-            _mediatorService = mediatorService; //
+            _dataService = dataService; 
         }
 
         [HttpGet]
-        [Route("api/[controller]/Notify")]
-        public ActionResult<string> NotifyMessage()
+        [Route("api/[controller]/message")]
+        public async Task<bool> SendMessage(MessageDetails messageDetails, CancellationToken cancellationToken)
         {
-            _mediatorService.Notify("This is a test notification message");
-            return "Notified";
+            return await _dataService.SendMessage(messageDetails, cancellationToken);
+           
         }
 
         [HttpGet]
-        [Route("api/[controller]/Send")]
-        public async Task<string> SendMessage(String _data)
+        [Route("api/[controller]/request")]
+        public async Task<bool> SendRequest(string payload, CancellationToken cancellationToken)
         {
-            String data = await _mediatorService.Send(_data);
-            return data;
+            return await _dataService.SendRequest(payload, cancellationToken);          
         }
 
     }
