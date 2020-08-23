@@ -1,16 +1,15 @@
 ﻿using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace mediatrDemo
 {
-    public class RequestHandler : IRequestHandler<Request, Dto>
+    public class RequestHandler : IRequestHandler<Request, Response>
     {
-        public Task<Dto> Handle(Request request, CancellationToken cancellationToken)
+        public Task<Response> Handle(Request request, CancellationToken cancellationToken)
         {
-            // do something with the request data 
-            // return the response
-            return Task.FromResult(new Dto() { isSucess = true }); 
+           return Task.FromResult(new Response() { data= "Response generated" + DateTime.Now.ToString(), isSucess = true }); 
         }       
     }
 }

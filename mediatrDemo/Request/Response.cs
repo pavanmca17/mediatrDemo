@@ -1,7 +1,7 @@
 ﻿
 namespace mediatrDemo
 {
-    public class Dto
+    public class Response
     {
         public string data { get; set; }
 

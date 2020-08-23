@@ -6,6 +6,6 @@ namespace mediatrDemo
     public interface IDataService
     {
         Task<bool> SendMessage(MessageDetails messageDetails, CancellationToken cancellationToken);
-        Task<bool> SendRequest(string payload, CancellationToken cancellationToken);
+        Task<Response> SendRequest(string payload, CancellationToken cancellationToken);
     }
 }

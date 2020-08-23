@@ -1,11 +1,11 @@
 ﻿using System.Reflection;
-using HealthChecks.UI.Configuration;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace mediatrDemo
 {
@@ -28,19 +28,24 @@ namespace mediatrDemo
            
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-#pragma warning disable CS0618 // Type or member is obsolete
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-#pragma warning restore CS0618 // Type or member is obsolete
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
-           
+            app.UseHttpsRedirection();
 
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
+
     }
 }

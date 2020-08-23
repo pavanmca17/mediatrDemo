@@ -25,7 +25,7 @@ namespace mediatrDemo.Controllers
 
         [HttpGet]
         [Route("api/[controller]/request")]
-        public async Task<bool> SendRequest(string payload, CancellationToken cancellationToken)
+        public async Task<Response> SendRequest(string payload, CancellationToken cancellationToken)
         {
             return await _dataService.SendRequest(payload, cancellationToken);          
         }
