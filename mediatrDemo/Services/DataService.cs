@@ -23,8 +23,7 @@ namespace mediatrDemo
         public async Task<Response> SendRequest(string payload, CancellationToken cancellationToken)
         {
             var request = new Request() { data = payload };
-            var response = await _mediator.Send<Response>(request, cancellationToken);
-            return response;
+            return await _mediator.Send<Response>(request, cancellationToken);
           
         }
 

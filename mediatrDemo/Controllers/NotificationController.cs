@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,8 +18,12 @@ namespace mediatrDemo.Controllers
 
         [HttpGet]
         [Route("api/[controller]/message")]
-        public async Task<bool> SendMessage(MessageDetails messageDetails, CancellationToken cancellationToken)
+        public async Task<bool> SendMessage(string messageData, CancellationToken cancellationToken)
         {
+            var messageDetails = new MessageDetails();
+            messageDetails.createdBy = "TestUser";
+            messageDetails.CreatedDate = DateTime.Now;
+            messageDetails.messageData = messageData;
             return await _dataService.SendMessage(messageDetails, cancellationToken);
            
         }
