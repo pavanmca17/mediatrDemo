@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using mediatrDemo.Model;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 
 
@@ -18,6 +20,15 @@ namespace mediatrDemo
             });
         }
 
-     
+        public static void ConfigureValues(this IServiceCollection services, IConfiguration Configuration)
+        {
+            services.Configure<Settings>(options =>
+            {
+                options.topicname = Configuration.GetSection("test:value").Value;
+
+            });
+        }
+
+
     }
 }
