@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using OpenTelemetry.Exporter;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using System.Reflection;
 
 namespace mediatrDemo
 {

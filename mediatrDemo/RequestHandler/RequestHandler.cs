@@ -9,7 +9,7 @@ namespace mediatrDemo
     {
         public Task<Response> Handle(Request request, CancellationToken cancellationToken)
         {
-           return Task.FromResult(new Response() { data= "Response generated" + DateTime.Now.ToString(), isSucess = true }); 
+           return Task.FromResult(new Response() { data= $"Response generated-DateTime{DateTime.Now.ToString()}", isSucess = true }); 
         }       
     }
 }
