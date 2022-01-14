@@ -6,7 +6,5 @@ namespace mediatrDemo
     {
         public string data { get; set; }
 
-        public bool isSucess { get; set; }
-
     }
 }

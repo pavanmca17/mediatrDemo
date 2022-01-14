@@ -24,6 +24,7 @@ namespace mediatrDemo.Controllers
         [Route("api/[controller]/message")]
         public async Task<bool> SendMessage(string messageData, CancellationToken cancellationToken)
         {
+
             var messageDetails = new MessageDetails();
             messageDetails.createdBy = "TestUser";
             messageDetails.CreatedDate = DateTime.Now;
