@@ -40,15 +40,13 @@ namespace mediatrDemo
              builder =>
              {
                  _logger.LogInformation("AddOpenTelemetryTracing");
-                 builder
-                     .SetResourceBuilder(ResourceBuilder
-                         .CreateDefault()
-                         .AddService(webHostEnvironment.ApplicationName))
-                     .AddAspNetCoreInstrumentation();
+                 builder.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(webHostEnvironment.ApplicationName))
+                                                                           .AddAspNetCoreInstrumentation();
                  if (webHostEnvironment.IsDevelopment())
                  {
                      builder.AddConsoleExporter(options => options.Targets = ConsoleExporterOutputTargets.Debug);
                  }
+
              });
 
         }
