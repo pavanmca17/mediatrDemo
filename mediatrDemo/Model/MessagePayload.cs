@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace mediatrDemo
+namespace mediatrDemo.Model
 {
-    public class MessageDetails
+    public class MessagePayload
     {
         public string messageData { get; set; }
 
         public DateTime CreatedDate { get; set; }
 
         public string createdBy { get; set; }
+
     }
 }

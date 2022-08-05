@@ -1,14 +1,12 @@
 ﻿using MediatR;
+using mediatrDemo.Services.Impl;
+using mediatrDemo.Services.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using OpenTelemetry.Exporter;
-using OpenTelemetry.Resources;
-using OpenTelemetry.Trace;
 using System.Reflection;
 
 namespace mediatrDemo
@@ -30,25 +28,12 @@ namespace mediatrDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            _logger.LogInformation("ConfigureServices");
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
+            _logger.LogInformation("ConfigureServices");           
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddTransient<IDataService, DataService>();
             services.ConfigureCors();           
             services.AddSwaggerGen();
-            services.AddOpenTelemetryTracing(
-             builder =>
-             {
-                 _logger.LogInformation("AddOpenTelemetryTracing");
-                 builder.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(webHostEnvironment.ApplicationName))
-                                                                           .AddAspNetCoreInstrumentation();
-                 if (webHostEnvironment.IsDevelopment())
-                 {
-                     builder.AddConsoleExporter(options => options.Targets = ConsoleExporterOutputTargets.Debug);
-                 }
-
-             });
-
+            services.AddControllers();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

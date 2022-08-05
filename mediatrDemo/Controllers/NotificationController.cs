@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using mediatrDemo.Model;
+using mediatrDemo.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
 namespace mediatrDemo.Controllers
 {
-   
+
     [ApiController]
+    [Route("api/[controller]")]
     public class NotificationController : ControllerBase
     {
         private readonly IDataService _dataService;
@@ -20,22 +23,17 @@ namespace mediatrDemo.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        [Route("api/[controller]/message")]
-        public async Task<bool> SendMessage(string messageData, CancellationToken cancellationToken)
+        [HttpPost]
+        [Route("/message")]
+        public async Task<bool> SendMessage(MessageDetailsDTO messagedetails, CancellationToken cancellationToken)
         {
-
-            var messageDetails = new MessageDetails();
-            messageDetails.createdBy = "TestUser";
-            messageDetails.CreatedDate = DateTime.Now;
-            messageDetails.messageData = messageData;
-            _logger.LogInformation(JsonConvert.SerializeObject(messageDetails));
-            return await _dataService.SendMessage(messageDetails, cancellationToken);
+            _logger.LogInformation("NotificationController -> SendMessage");                      
+            return await _dataService.SendMessage(messagedetails, cancellationToken);
            
         }
 
         [HttpGet]
-        [Route("api/[controller]/request")]
+        [Route("/request")]
         public async Task<Response> SendRequest(string payload, CancellationToken cancellationToken)
         {
             _logger.LogInformation(payload);
