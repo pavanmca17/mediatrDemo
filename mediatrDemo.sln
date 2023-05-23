@@ -1,9 +1,9 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mediatrDemo", "mediatrDemo\mediatrDemo.csproj", "{E3AD7E76-2391-4653-B4D5-EA17DBF27D47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mediatrDemo", "mediatrDemo\mediatrDemo.csproj", "{E3AD7E76-2391-4653-B4D5-EA17DBF27D47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -16,7 +16,7 @@ namespace mediatrDemo
         }
         public Task<Response> Handle(Request request, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("DataRequestHandler -> ss");
+            _logger.LogInformation("DataRequestHandler -> Handle");           
             return Task.FromResult(new Response() {  isSucess = true }); 
         }       
     }
