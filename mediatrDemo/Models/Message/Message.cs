@@ -1,10 +1,12 @@
-﻿using MediatR;
-
-namespace mediatrDemo.Model
+﻿namespace mediatrDemo.Model
 {
-    public class Message : INotification
+    public class Message
     {
-        public MessagePayload MessagePayload { get; set; }
-       
+        public string Data { get; set; }
+
+        public string CreatedDate { get; set; }
+
+        public string createdBy { get; set; }
+
     }
 }
