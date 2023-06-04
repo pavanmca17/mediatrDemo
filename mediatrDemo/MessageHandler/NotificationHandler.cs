@@ -15,8 +15,7 @@ namespace mediatrDemo
         }
         public Task Handle(NotifictionMessage notifictionMessage, CancellationToken cancellationToken)
         {
-            _logger.LogInformation($"RequestId:{notifictionMessage.Guid}");
-            _logger.LogInformation($"{nameof(NotificationHandler)}  : {notifictionMessage.Message} ");
+            _logger.LogInformation($"RequestId:{notifictionMessage.Guid}, Handled:{nameof(NotificationHandler)}--{notifictionMessage.Message} ");
             Task.Delay(1000);          
             return Task.CompletedTask;
         }

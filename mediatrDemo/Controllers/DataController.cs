@@ -1,14 +1,12 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using mediatrDemo.Model;
-using mediatrDemo.Services.Impl;
 using mediatrDemo.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace mediatrDemo.Controllers
 {
-
     [ApiController]
     [Route("api/[controller]")]
     public class DataController : ControllerBase
@@ -27,9 +25,8 @@ namespace mediatrDemo.Controllers
         [HttpPost]
         [Route("/notify")]
         public async Task<string> SendNotifcation(Message message, CancellationToken cancellationToken)
-        {
-            
-            _logger.LogInformation("DataController -> SendNotifcation");                      
+        {            
+            _logger.LogInformation($"{nameof(DataController)},{nameof(SendNotifcation)}");                      
             return await _notifcationService.SendNotification(message, cancellationToken);
            
         }
@@ -38,7 +35,7 @@ namespace mediatrDemo.Controllers
         [Route("/request")]
         public async Task<Response> SendRequest(string requestID, CancellationToken cancellationToken)
         {
-           
+            _logger.LogInformation($"{nameof(DataController)},{nameof(SendRequest)}");
             return await _requestService.SendRequest(requestID, cancellationToken);          
         }
 

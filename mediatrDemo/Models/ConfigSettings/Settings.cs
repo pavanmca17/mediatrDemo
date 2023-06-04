@@ -7,6 +7,6 @@ namespace mediatrDemo.Model
 {
     public class Settings
     {
-        internal string topicname;
+        public string topicname;
     }
 }
