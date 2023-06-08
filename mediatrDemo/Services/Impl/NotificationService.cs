@@ -19,14 +19,14 @@ namespace mediatrDemo.Services.Impl
             _logger = logger;
         }
 
-        public async Task<string> SendNotification(Message message, CancellationToken cancellationToken)
+        public async Task<string> SendNotification(Message messageViewModel, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("DataService -> SendMessage");
+            _logger.LogInformation($"{nameof(NotificationService)} -> {nameof(SendNotification)}");
 
             string notificationID = Guid.NewGuid().ToString();
             var notifictionMessage = new NotifictionMessage{
                                          Guid = notificationID,
-                                         Message= message
+                                         Message= messageViewModel
             };
 
             await _mediator.Publish(notifictionMessage, cancellationToken);

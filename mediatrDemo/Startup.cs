@@ -19,7 +19,7 @@ namespace mediatrDemo
             Configuration = configuration;
             _logger = logger;
             this.webHostEnvironment = webHostEnvironment;
-        }        
+        }    
        
 
         public IConfiguration Configuration { get; }
@@ -29,7 +29,7 @@ namespace mediatrDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            _logger.LogInformation("ConfigureServices");           
+            _logger.LogInformation($"{nameof(ConfigureServices)}");           
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddTransient<INotifcationService, NotificationService>();
             services.AddTransient<IRequestService, RequestService>();
@@ -40,7 +40,7 @@ namespace mediatrDemo
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            _logger.LogInformation("ApplicationName" + env.ApplicationName);
+            _logger.LogInformation($"ApplicationName-{env.ApplicationName}");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -54,14 +54,9 @@ namespace mediatrDemo
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
+            });          
 
-
-            app.UseHttpsRedirection();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
+            app.UseRouting();            
 
             app.UseEndpoints(endpoints =>
             {

@@ -24,18 +24,17 @@ namespace mediatrDemo.Controllers
 
         [HttpPost]
         [Route("/notify")]
-        public async Task<string> SendNotifcation(Message message, CancellationToken cancellationToken)
+        public async Task<string> SendNotifcation(Message messageViewModel, CancellationToken cancellationToken)
         {            
-            _logger.LogInformation($"{nameof(DataController)},{nameof(SendNotifcation)}");                      
-            return await _notifcationService.SendNotification(message, cancellationToken);
-           
+            _logger.LogInformation($"{nameof(DataController)} -> {nameof(SendNotifcation)}");                      
+            return await _notifcationService.SendNotification(messageViewModel, cancellationToken);           
         }
 
         [HttpGet]
         [Route("/request")]
         public async Task<Response> SendRequest(string requestID, CancellationToken cancellationToken)
         {
-            _logger.LogInformation($"{nameof(DataController)},{nameof(SendRequest)}");
+            _logger.LogInformation($"{nameof(DataController)} -> {nameof(SendRequest)}");
             return await _requestService.SendRequest(requestID, cancellationToken);          
         }
 

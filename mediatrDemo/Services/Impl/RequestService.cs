@@ -22,9 +22,6 @@ namespace mediatrDemo.Services.Impl
             _logger.LogInformation($"{nameof(RequestService)},{nameof(SendRequest)}");
             var request = new Request() { data = payload };
             return await _mediator.Send(request, cancellationToken);
-
         }
-
-
     }
 }

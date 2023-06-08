@@ -19,16 +19,5 @@ namespace mediatrDemo
                 .AllowCredentials());
             });
         }
-
-        public static void ConfigureValues(this IServiceCollection services, IConfiguration Configuration)
-        {
-            services.Configure<Settings>(options =>
-            {
-                options.topicname = Configuration.GetSection("test:value").Value;
-
-            });
-        }
-
-
     }
 }

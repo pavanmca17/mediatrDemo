@@ -15,8 +15,11 @@ namespace mediatrDemo
         }
         public Task<Response> Handle(Request request, CancellationToken cancellationToken)
         {
-            _logger.LogInformation($"RequestHandler{nameof(RequestHandler)} -> Handle{Handle}");           
-            return Task.FromResult(new Response() { responseGeneratedDateTime = DateTime.Now.ToString(), isSucess = true }); 
+            _logger.LogInformation($"{nameof(RequestHandler)} -> {nameof(Handle)}");           
+            return Task.FromResult(new Response() {
+                                     responseGeneratedDateTime = DateTime.Now.ToString(), 
+                                     isSucess = true
+                                   }); 
         }       
     }
 }
