@@ -18,8 +18,7 @@ namespace mediatrDemo
                {
                    logging.ClearProviders();
                    logging.AddDebug();
-                   logging.AddConsole();
-                   logging.AddEventLog();
+                   logging.AddConsole();                   
                });
 
 

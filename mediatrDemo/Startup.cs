@@ -19,8 +19,7 @@ namespace mediatrDemo
             Configuration = configuration;
             _logger = logger;
             this.webHostEnvironment = webHostEnvironment;
-        }    
-       
+        }           
 
         public IConfiguration Configuration { get; }
         private readonly ILogger _logger;
@@ -56,7 +55,9 @@ namespace mediatrDemo
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });          
 
-            app.UseRouting();            
+            app.UseRouting();
+
+            app.UseHttpsRedirection();
 
             app.UseEndpoints(endpoints =>
             {
